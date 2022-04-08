@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "trieGenerator.h"
+
 #define WORDS_FILENAME "Datagen/words.txt"
 
 using namespace std;
