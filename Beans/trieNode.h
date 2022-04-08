@@ -7,17 +7,36 @@ class TrieNode {
 	private:
 		char letter;
 		TrieNode* children[ALPHABET_SIZE];
-		bool isRootNode;
+		bool rootNode;
 	public:
-		TrieNode(char c);
+		TrieNode(char c) {
+			letter = c;
+			rootNode = false;
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				children[i] = 0;
+			}
+		}
 
-		TrieNode();
+		TrieNode() {
+			letter = '!';
+			rootNode = true;
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				children[i] = 0;
+			}
 
-		char getLetter();
+		}
 
-		bool isRootNode();
+		char getLetter() {
+			return letter;
+		}
 
-		TrieNode* getChild(char c);
+		bool isRootNode() {
+			return rootNode;
+		}
+
+		TrieNode* getChild(char c) {
+			return children[c - 'a'];
+		}
 };
 
 #endif

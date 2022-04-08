@@ -4,8 +4,13 @@
 #include <vector>
 #include <string>
 
+#include "../Beans/trieNode.h"
+
 using namespace std;
 
-void generateTrieFromWords(vector<string>& words);
+TrieNode* generateTrieFromWords(vector<string>& words) {
+	TrieNode* rootNode = new TrieNode();
+	return rootNode;
+}
 
 #endif

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "trieGenerator.h"
+#include "../Beans/trieNode.h"
 
 #define WORDS_FILENAME "Datagen/words.txt"
 
@@ -24,5 +25,5 @@ vector<string> generateWordsVector() {
 
 int main() {
 	vector<string> words = generateWordsVector();
-	
+	TrieNode* trie = generateTrieFromWords(words);
 }
