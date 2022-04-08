@@ -6,7 +6,7 @@
 #include "trieGenerator.h"
 #include "../Beans/trieNode.h"
 
-#define WORDS_FILENAME "Datagen/words.txt"
+#define WORDS_FILENAME "Datagen/lessWords.txt"
 
 using namespace std;
 
