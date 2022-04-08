@@ -10,6 +10,13 @@
 
 using namespace std;
 
+vector<string> generateWordsVector();
+
+int main() {
+	vector<string> words = generateWordsVector();
+	TrieNode* trie = generateTrieFromWords(words);
+}
+
 vector<string> generateWordsVector() {
 	ifstream wordsFileStream(WORDS_FILENAME);
 	vector<string> words;
@@ -21,9 +28,4 @@ vector<string> generateWordsVector() {
 		wordsFileStream.close();
 	}
 	return words;
-}
-
-int main() {
-	vector<string> words = generateWordsVector();
-	TrieNode* trie = generateTrieFromWords(words);
 }
