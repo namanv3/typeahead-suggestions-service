@@ -14,7 +14,7 @@ vector<string> generateWordsVector();
 
 int main() {
 	vector<string> words = generateWordsVector();
-	TrieNode* trie = generateTrieFromWords(words);
+	TrieNode* trieNode = generateTrieFromWords(words);
 }
 
 vector<string> generateWordsVector() {
