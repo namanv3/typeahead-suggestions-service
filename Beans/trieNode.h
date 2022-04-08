@@ -7,10 +7,15 @@ class TrieNode {
 	private:
 		char letter;
 		TrieNode* children[ALPHABET_SIZE];
+		bool isRootNode;
 	public:
 		TrieNode(char c);
 
+		TrieNode();
+
 		char getLetter();
+
+		bool isRootNode();
 
 		TrieNode* getChild(char c);
 };
