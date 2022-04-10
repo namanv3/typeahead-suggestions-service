@@ -5,9 +5,6 @@
 #include "trieGenerator.h"
 #include "../Commons/writeTrieToFile.h"
 
-#define WORDS_FILENAME "Datagen/lessWords.txt"
-#define TRIE_FILENAME "trieFromScratch.trie"
-
 using namespace std;
 
 vector<string> generateWordsVector();
