@@ -53,6 +53,9 @@ string convertNodeToString(TrieNode* trieNode) {
 
 	// add number of children
 	nodeString += to_string(trieNode->getNumberOfNonNullChilden());
+
+	// add end of node
+	nodeString += END_OF_NODE;
 	return nodeString;
 }
 
