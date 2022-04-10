@@ -6,7 +6,6 @@
 #include "trieFileConstants.h"
 #include "writeToFile.h"
 #include "../Beans/trieNode.h"
-#include "../Beans/suggestion.h"
 
 using namespace std;
 

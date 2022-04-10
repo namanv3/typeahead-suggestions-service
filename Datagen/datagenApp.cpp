@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "trieGenerator.h"
-#include "../Beans/trieNode.h"
 #include "../Commons/writeTrieToFile.h"
 
 #define WORDS_FILENAME "Datagen/lessWords.txt"
