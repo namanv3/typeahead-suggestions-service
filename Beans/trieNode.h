@@ -5,7 +5,7 @@
 
 const int ALPHABET_SIZE = 26;
 const char ROOT_NODE_CHAR = '!';
-const int NUM_SUGGESTIONS = 7;
+const int NUM_SUGGESTIONS = 3;
 
 class TrieNode {
 	private:
@@ -57,12 +57,26 @@ class TrieNode {
 			return endOfWord;
 		}
 
+		TrieNode** getChildren() {
+			return children;
+		}
+
 		TrieNode* getChild(char c) {
 			return children[c - 'a'];
 		}
 
 		void setChild(TrieNode* child, char c) {
 			children[c - 'a'] = child; 
+		}
+
+		int getNumberOfNonNullChilden() {
+			int count = 0;
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				if (children[i] != NULL) {
+					count++;
+				}
+			}
+			return count;
 		}
 
 		void makeEndOfWord() {
