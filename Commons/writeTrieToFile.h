@@ -1,10 +1,10 @@
-#ifndef __WRITE_TO_FILE_INCLUDED__
-#define __WRITE_TO_FILE_INCLUDED__
+#ifndef __WRITE_TRIE_TO_FILE_INCLUDED__
+#define __WRITE_TRIE_TO_FILE_INCLUDED__
 
-#include <fstream>
 #include <string>
 
 #include "trieFileConstants.h"
+#include "writeToFile.h"
 #include "../Beans/trieNode.h"
 #include "../Beans/suggestion.h"
 
@@ -19,10 +19,7 @@ void writeTrieToFile(TrieNode* trieNode, string filename) {
 	generateFileContent(trieNode, trieContent);
 	printf("%s\n", trieContent.c_str());
 
-	ofstream outputFile;
-	outputFile.open(filename);
-	outputFile << trieContent;
- 	outputFile.close();
+	writeToFile(trieContent, filename);
 }
 
 void generateFileContent(TrieNode* trieNode, string& content) {
