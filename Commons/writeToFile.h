@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 void writeToFile(string content, string filename) {
 	ofstream outputFile;
 	outputFile.open(filename);
