@@ -14,7 +14,6 @@ string convertNodeToString(TrieNode* trieNode);
 
 void generateFileContent(TrieNode* trieNode, string& content);
 
-
 void writeTrieToFile(TrieNode* trieNode, string filename) {
 	string trieContent = "";
 	generateFileContent(trieNode, trieContent);
