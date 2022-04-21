@@ -9,6 +9,7 @@ string readTrieFileToString();
 int main() {
 	string trieFileContent = readTrieFileToString();
 	TrieNode* trieNode = deserialiseTrieFile(trieFileContent);
+	trieNode->printTrie();
 }
 
 string readTrieFileToString() {

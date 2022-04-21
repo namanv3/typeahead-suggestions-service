@@ -114,6 +114,31 @@ class TrieNode {
 				insertSuggestion(childTopSuggestions[j]);
 			}
 		}
+
+		void printSuggestions() {
+			printf("Suggestions: ");
+			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
+				if (topSuggestions[i] == NULL) {
+					printf("\n");
+					return;
+				}
+				printf("%s %d, ", topSuggestions[i]->getSuggestedWord().c_str(), topSuggestions[i]->getCount());
+			}
+			printf("\n");
+		}
+
+		void printTrie() {
+			printf("Letter: %c. Is end of word: %d. Number of children: %d\n", letter, endOfWord, getNumberOfNonNullChilden());
+			printSuggestions();
+			printf("\n");
+
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				if (children[i] == NULL) {
+					continue;
+				}
+				children[i]->printTrie();
+			}
+		}
 };
 
 #endif

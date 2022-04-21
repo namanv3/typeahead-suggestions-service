@@ -43,7 +43,7 @@ void addSuggestions(TrieNode* node, string nodeString) {
 	string currWord = "";
 	string currCount = "";
 	bool readingWord = true;
-	while (nodeString[currIdx] < nodeString.size()) {
+	while (currIdx < nodeString.size()) {
 		if (readingWord) {
 			if (nodeString[currIdx] == NO_SUGGESTION[0]) {
 				return;
