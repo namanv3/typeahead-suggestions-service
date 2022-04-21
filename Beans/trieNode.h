@@ -14,7 +14,7 @@ class TrieNode {
 	public:
 		TrieNode(char c, bool isEndOfWord) {
 			letter = c;
-			rootNode = false;
+			rootNode = (c == ROOT_NODE_CHAR);
 			endOfWord = isEndOfWord;
 			for (int i = 0; i < ALPHABET_SIZE; i++) {
 				children[i] = NULL;

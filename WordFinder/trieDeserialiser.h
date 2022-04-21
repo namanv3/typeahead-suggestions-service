@@ -7,9 +7,81 @@
 
 using namespace std;
 
+int getNumberOfNonNullChilden(string nodeString);
+
+bool checkIfEndOfWord(string nodeString);
+
+void addSuggestions(TrieNode* node, string nodeString);
+
+TrieNode* deserialiseTrieNode(vector<string> nodes, int currIdx);
+
 TrieNode* deserialiseTrieFile(string trieFileContent) {
 	vector<string> nodes = splitString(trieFileContent, END_OF_NODE[0]);
-	return NULL;
+	return deserialiseTrieNode(nodes, 0);
+}
+
+TrieNode* deserialiseTrieNode(vector<string> nodes, int currIdx) {
+	string nodeString = nodes[currIdx];
+	char letter = nodeString[0];
+	bool isEndOfWord = checkIfEndOfWord(nodeString);
+	TrieNode* node = new TrieNode(letter, isEndOfWord);
+	addSuggestions(node, nodeString);
+
+	return node;
+}
+
+void addSuggestions(TrieNode* node, string nodeString) {
+	int currIdx = 1;
+	string currWord = "";
+	string currCount = "";
+	bool readingWord = true;
+	while (nodeString[currIdx] < nodeString.size()) {
+		if (readingWord) {
+			if (nodeString[currIdx] == NO_SUGGESTION[0]) {
+				return;
+			}
+			if (nodeString[currIdx] >= 'a' && nodeString[currIdx] <= 'z') {
+				currWord += nodeString[currIdx];
+			} else {
+				currCount += nodeString[currIdx];
+				readingWord = false;
+			}
+		} else {
+			if (nodeString[currIdx] >= '0' && nodeString[currIdx] <= '9') {
+				currCount += nodeString[currIdx];
+			} else {
+				int count = stoi(currCount);
+				Suggestion* s = new Suggestion(currWord, count);
+				node->insertSuggestion(s);
+				if (nodeString[currIdx] == IS_END_OF_WORD_FLAG[0]
+					|| nodeString[currIdx] == IS_NOT_END_OF_WORD_FLAG[0]) {
+					return;
+				}
+				readingWord = true;
+				currWord = nodeString[currIdx];
+				currCount = "";
+			}
+		}
+		currIdx++;
+	}
+}
+
+int getNumberOfNonNullChilden(string nodeString) {
+	int i = nodeString.size() - 1;
+	string num = "";
+	while (nodeString[i] >= '0' && nodeString[i] <= '9') {
+		num = nodeString[i] + num;
+		i--;
+	}
+	return stoi(num);
+}
+
+bool checkIfEndOfWord(string nodeString) {
+	int i = nodeString.size() - 1;
+	while (nodeString[i] >= '0' && nodeString[i] <= '9') {
+		i--;
+	}
+	return nodeString[i] == IS_END_OF_WORD_FLAG[0];
 }
 
 #endif
