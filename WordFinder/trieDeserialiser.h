@@ -20,12 +20,19 @@ TrieNode* deserialiseTrieFile(string trieFileContent) {
 	return deserialiseTrieNode(nodes, 0);
 }
 
-TrieNode* deserialiseTrieNode(vector<string> nodes, int currIdx) {
+TrieNode* deserialiseTrieNode(vector<string> nodes, int& currIdx) {
 	string nodeString = nodes[currIdx];
 	char letter = nodeString[0];
 	bool isEndOfWord = checkIfEndOfWord(nodeString);
 	TrieNode* node = new TrieNode(letter, isEndOfWord);
 	addSuggestions(node, nodeString);
+
+	int numChildren = getNumberOfNonNullChilden(nodeString);
+	for (int i = 0; i < numChildren; i++) {
+		currIdx++;
+		TrieNode* child = deserialiseTrieNode(nodes, currIdx, node);
+		node->setChild(child, child->getLetter());
+	}
 
 	return node;
 }
