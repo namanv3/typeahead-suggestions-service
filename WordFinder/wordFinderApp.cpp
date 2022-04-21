@@ -1,12 +1,14 @@
 #include <fstream>
-#include <string>
 
-#include "../Commons/trieFileConstants.h"
+#include "trieDeserialiser.h"
+
+using namespace std;
 
 string readTrieFileToString();
 
 int main() {
 	string trieFileContent = readTrieFileToString();
+	TrieNode* trieNode = deserialiseTrieFile(trieFileContent);
 }
 
 string readTrieFileToString() {
