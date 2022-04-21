@@ -14,7 +14,7 @@ class TrieNode {
 	public:
 		TrieNode(char c, bool isEndOfWord) {
 			letter = c;
-			rootNode = false;
+			rootNode = (c == ROOT_NODE_CHAR);
 			endOfWord = isEndOfWord;
 			for (int i = 0; i < ALPHABET_SIZE; i++) {
 				children[i] = NULL;
@@ -112,6 +112,31 @@ class TrieNode {
 			Suggestion** childTopSuggestions = children[i]->getTopSuggestions();
 			for (int j = 0; j < NUM_SUGGESTIONS; j++) {
 				insertSuggestion(childTopSuggestions[j]);
+			}
+		}
+
+		void printSuggestions() {
+			printf("Suggestions: ");
+			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
+				if (topSuggestions[i] == NULL) {
+					printf("\n");
+					return;
+				}
+				printf("%s %d, ", topSuggestions[i]->getSuggestedWord().c_str(), topSuggestions[i]->getCount());
+			}
+			printf("\n");
+		}
+
+		void printTrie() {
+			printf("Letter: %c. Is end of word: %d. Number of children: %d\n", letter, endOfWord, getNumberOfNonNullChilden());
+			printSuggestions();
+			printf("\n");
+
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				if (children[i] == NULL) {
+					continue;
+				}
+				children[i]->printTrie();
 			}
 		}
 };

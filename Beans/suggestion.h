@@ -15,6 +15,11 @@ class Suggestion {
 			count = 0;
 		}
 
+		Suggestion(string word, int c) {
+			suggestedWord = word;
+			count = c;
+		}
+
 		string getSuggestedWord() {
 			return suggestedWord;
 		}
