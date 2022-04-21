@@ -1,11 +1,8 @@
 #ifndef __TRIE_NODE_INCLUDED__
 #define __TRIE_NODE_INCLUDED__
 
+#include "commonConstants.h"
 #include "suggestion.h"
-
-const int ALPHABET_SIZE = 26;
-const char ROOT_NODE_CHAR = '!';
-const int NUM_SUGGESTIONS = 3;
 
 class TrieNode {
 	private:
