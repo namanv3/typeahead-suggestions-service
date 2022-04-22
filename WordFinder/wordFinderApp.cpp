@@ -1,6 +1,7 @@
 #include <fstream>
 
 #include "trieDeserialiser.h"
+#include "wordFinderTrie.h"
 
 using namespace std;
 
@@ -8,8 +9,8 @@ string readTrieFileToString();
 
 int main() {
 	string trieFileContent = readTrieFileToString();
-	TrieNode* trieNode = deserialiseTrieFile(trieFileContent);
-	trieNode->printTrie();
+	wordFinderTrie = deserialiseTrieFile(trieFileContent);
+	wordFinderTrie->printTrie();
 }
 
 string readTrieFileToString() {
