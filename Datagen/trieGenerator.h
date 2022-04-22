@@ -2,9 +2,7 @@
 #define __TRIE_GENERATOR_INCLUDED__
 
 #include <vector>
-#include <string>
 
-#include "../Beans/suggestion.h"
 #include "../Beans/trieNode.h"
 
 using namespace std;

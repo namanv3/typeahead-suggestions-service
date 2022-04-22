@@ -1,6 +1,4 @@
 #include <fstream>
-#include <string>
-#include <vector>
 
 #include "trieGenerator.h"
 #include "../Commons/writeTrieToFile.h"
