@@ -1,8 +1,6 @@
 #ifndef __WORD_FINDER_TRIE__
 #define __WORD_FINDER_TRIE__
 
-#include <string>
-
 #include "../Beans/wordSearchStatus.h"
 #include "../Beans/trieNode.h"
 #include "../Commons/stringUtils.h"
