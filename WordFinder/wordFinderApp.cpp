@@ -11,7 +11,6 @@ string readTrieFileToString();
 int main() {
 	string trieFileContent = readTrieFileToString();
 	wordFinderTrie = deserialiseTrieFile(trieFileContent);
-	// wordFinderTrie->printTrie();
 
 	while (true) {
 		string query;
