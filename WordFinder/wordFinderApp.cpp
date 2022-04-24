@@ -3,6 +3,7 @@
 
 #include "trieDeserialiser.h"
 #include "wordFinderTrie.h"
+#include "../API/crow_all.h"
 
 using namespace std;
 
