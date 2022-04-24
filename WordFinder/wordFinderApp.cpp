@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 
 #include "trieDeserialiser.h"
@@ -10,7 +11,13 @@ string readTrieFileToString();
 int main() {
 	string trieFileContent = readTrieFileToString();
 	wordFinderTrie = deserialiseTrieFile(trieFileContent);
-	wordFinderTrie->printTrie();
+	// wordFinderTrie->printTrie();
+
+	while (true) {
+		string query;
+		cin >> query;
+		cout << checkForWord(query) << endl;
+	}
 }
 
 string readTrieFileToString() {
