@@ -23,4 +23,8 @@ vector<string> splitString(string content, char splitter) {
 	return split;
 }
 
+bool isLowerCase(char c) {
+	return c >= 'a' && c <= 'z';
+}
+
 #endif
