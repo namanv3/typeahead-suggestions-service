@@ -4,7 +4,6 @@
 #include "trieDeserialiser.h"
 #include "wordFinderTrie.h"
 #include "apiMethods.h"
-#include "../API/crow_all.h"
 
 using namespace std;
 
@@ -17,6 +16,7 @@ int main() {
 	crow::SimpleApp app;
 
     CROW_ROUTE(app, "/findWord/<string>")(findWord);
+    CROW_ROUTE(app, "/suggestions/<string>")(findSuggestions);
 
     app.port(18080).multithreaded().run();
 }

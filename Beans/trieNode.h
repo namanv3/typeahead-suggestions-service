@@ -1,6 +1,8 @@
 #ifndef __TRIE_NODE_INCLUDED__
 #define __TRIE_NODE_INCLUDED__
 
+#include <vector>
+
 #include "commonConstants.h"
 #include "suggestion.h"
 
@@ -138,6 +140,16 @@ class TrieNode {
 				}
 				children[i]->printTrie();
 			}
+		}
+
+		vector<string> getSuggestedWords() {
+			vector<string> suggestions;
+			int i = 0;
+			while (i < NUM_SUGGESTIONS && topSuggestions[i] != NULL) {
+				suggestions.push_back(topSuggestions[i]->getSuggestedWord());
+				i++;
+			}
+			return suggestions;
 		}
 };
 

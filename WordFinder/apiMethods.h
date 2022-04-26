@@ -1,7 +1,8 @@
 #ifndef __API_METHODS__
 #define __API_METHODS__
 
-#include <string>
+#include "../API/crow_all.h"
+#include "suggestionsFinder.h"
 
 using namespace std;
 
@@ -15,6 +16,14 @@ string findWord(string query) {
 			return "Not a full word\n";
 	}
     return "Invalid request\n";
+}
+
+crow::json::wvalue findSuggestions(string query) {
+	vector<string> suggestions = checkForSuggestions(query);
+
+	crow::json::wvalue response;
+	response["suggestions"] = suggestions;
+	return response;
 }
 
 #endif
