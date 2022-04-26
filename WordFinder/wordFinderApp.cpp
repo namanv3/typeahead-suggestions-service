@@ -3,6 +3,7 @@
 
 #include "trieDeserialiser.h"
 #include "wordFinderTrie.h"
+#include "apiMethods.h"
 #include "../API/crow_all.h"
 
 using namespace std;
@@ -13,11 +14,11 @@ int main() {
 	string trieFileContent = readTrieFileToString();
 	wordFinderTrie = deserialiseTrieFile(trieFileContent);
 
-	while (true) {
-		string query;
-		cin >> query;
-		cout << checkForWord(query) << endl;
-	}
+	crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/findWord/<string>")(findWord);
+
+    app.port(18080).multithreaded().run();
 }
 
 string readTrieFileToString() {
