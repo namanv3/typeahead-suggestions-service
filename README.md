@@ -30,6 +30,8 @@ Then run the same:
 After this, we need to start our Word Finder Service:
 ```
 g++ -std=c++11 WordFinder/wordFinderApp.cpp
+```
+```
 ./a.out
 ```
 This Service has two APIs, one for searching for a word, and the other for getting word suggestions.
