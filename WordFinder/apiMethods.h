@@ -2,6 +2,7 @@
 #define __API_METHODS__
 
 #include "../API/crow_all.h"
+#include "wordFinder.h"
 #include "suggestionsFinder.h"
 
 using namespace std;
