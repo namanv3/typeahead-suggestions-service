@@ -2,6 +2,7 @@
 #define __SUGGESTIOS_FINDER__
 
 #include <vector>
+#include <string>
 
 #include "wordFinderTrie.h"
 
