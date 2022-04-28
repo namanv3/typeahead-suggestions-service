@@ -22,7 +22,7 @@ void insertWord(TrieNode* trieNode, string wordToInsert, string fullWord) {
 	char childChar = wordToInsert[0];
 	TrieNode* childNode = trieNode->getChild(childChar);
 	if (childNode == NULL) {
-		childNode = new TrieNode(childChar, isLastChar);
+		childNode = new TrieNode(childChar, isLastChar, trieNode);
 		trieNode->setChild(childNode, childChar);
 	}
 

@@ -13,7 +13,22 @@ class TrieNode {
 		bool rootNode;
 		bool endOfWord;
 		Suggestion* topSuggestions[NUM_SUGGESTIONS];
+		TrieNode* parent;
 	public:
+		TrieNode(char c, bool isEndOfWord, TrieNode* parentNode) {
+			letter = c;
+			rootNode = (c == ROOT_NODE_CHAR);
+			endOfWord = isEndOfWord;
+			for (int i = 0; i < ALPHABET_SIZE; i++) {
+				children[i] = NULL;
+			}
+
+			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
+				topSuggestions[i] = NULL;
+			}
+			parent = parentNode;
+		}
+
 		TrieNode(char c, bool isEndOfWord) {
 			letter = c;
 			rootNode = (c == ROOT_NODE_CHAR);
@@ -25,6 +40,7 @@ class TrieNode {
 			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
 				topSuggestions[i] = NULL;
 			}
+			parent = NULL;
 		}
 
 		TrieNode() {
@@ -37,7 +53,7 @@ class TrieNode {
 			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
 				topSuggestions[i] = NULL;
 			}
-
+			parent = NULL;
 		}
 
 		char getLetter() {
@@ -66,6 +82,14 @@ class TrieNode {
 
 		void setChild(TrieNode* child, char c) {
 			children[c - 'a'] = child; 
+		}
+
+		TrieNode* getParent() {
+			return parent;
+		}
+
+		void setParent(TrieNode* parentNode) {
+			parent = parentNode;
 		}
 
 		int getNumberOfNonNullChilden() {
@@ -130,7 +154,8 @@ class TrieNode {
 		}
 
 		void printTrie() {
-			printf("Letter: %c. Is end of word: %d. Number of children: %d\n", letter, endOfWord, getNumberOfNonNullChilden());
+			printf("Letter: %c. Parent letter: \"%c\". Is end of word: %d. Number of children: %d\n", 
+				letter, parent == NULL ? '?' : parent->getLetter(), endOfWord, getNumberOfNonNullChilden());
 			printSuggestions();
 			printf("\n");
 
