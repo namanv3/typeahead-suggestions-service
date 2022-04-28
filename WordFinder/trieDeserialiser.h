@@ -13,25 +13,25 @@ bool checkIfEndOfWord(string nodeString);
 
 void addSuggestions(TrieNode* node, string nodeString);
 
-TrieNode* deserialiseTrieNode(vector<string> nodes, int& currIdx);
+TrieNode* deserialiseTrieNode(vector<string> nodes, int& currIdx, TrieNode* parent);
 
 TrieNode* deserialiseTrieFile(string trieFileContent) {
 	vector<string> nodes = splitString(trieFileContent, END_OF_NODE[0]);
 	int idx = 0;
-	return deserialiseTrieNode(nodes, idx);
+	return deserialiseTrieNode(nodes, idx, NULL);
 }
 
-TrieNode* deserialiseTrieNode(vector<string> nodes, int& currIdx) {
+TrieNode* deserialiseTrieNode(vector<string> nodes, int& currIdx, TrieNode* parent) {
 	string nodeString = nodes[currIdx];
 	char letter = nodeString[0];
 	bool isEndOfWord = checkIfEndOfWord(nodeString);
-	TrieNode* node = new TrieNode(letter, isEndOfWord);
+	TrieNode* node = new TrieNode(letter, isEndOfWord ,parent);
 	addSuggestions(node, nodeString);
 
 	int numChildren = getNumberOfNonNullChilden(nodeString);
 	for (int i = 0; i < numChildren; i++) {
 		currIdx++;
-		TrieNode* child = deserialiseTrieNode(nodes, currIdx);
+		TrieNode* child = deserialiseTrieNode(nodes, currIdx, node);
 		node->setChild(child, child->getLetter());
 	}
 
