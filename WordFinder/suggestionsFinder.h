@@ -12,6 +12,10 @@ vector<string> checkForSuggestions(string query) {
 	if (query == "") {
 		return wordFinderTrie->getSuggestedWords();
 	}
+	if (!isLowerCase(query[0])) {
+		vector<string> empty;
+		return empty;
+	}
 
 	TrieNode* startingNode = wordFinderTrie->getChild(query[0]);
 	return checkForSuggestions(query, startingNode);
