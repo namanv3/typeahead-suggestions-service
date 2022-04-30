@@ -112,6 +112,18 @@ class TrieNode {
 			topSuggestions.insert(it, suggestion);
 		}
 
+		void addNewSuggestionOrIncrement(string word) {
+			list<Suggestion>::iterator it;
+			for (it = topSuggestions.begin(); it != topSuggestions.end(); it++) {
+				if (it->getSuggestedWord() == word) {
+					break;
+				}
+			}
+			Suggestion* toInsert = new Suggestion(word, it->getCount() + 1);
+			topSuggestions.erase(it);
+			insertSuggestion(*toInsert);
+		}
+
 		void updateSuggestionsFromChild(char c) {
 			int i = c - 'a';
 			if (children[i] == 0) {
