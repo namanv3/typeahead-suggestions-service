@@ -49,7 +49,7 @@ Whenever Word Finder App is shut down, all the data about searched words is lost
 ### Prequisites
 This is a python script. The `requests` package is required for this:
 ```
-pip3 install requests`
+pip3 install requests
 ```
 ### How to run
 A simple python command does the trick. 
