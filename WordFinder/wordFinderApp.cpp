@@ -17,6 +17,7 @@ int main() {
 
     CROW_ROUTE(app, "/findWord/<string>")(findWord);
     CROW_ROUTE(app, "/suggestions/<string>")(findSuggestions);
+    CROW_ROUTE(app, "/fetchTrieContent/")(fetchTrieContent);
 
     app.port(18080).multithreaded().run();
 }
