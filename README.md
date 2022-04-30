@@ -5,7 +5,7 @@ All files, except `API/crow_all.h`, are written by me.
 
 (This project is a work in progress.)
 
-Given a dictionary of words, Word Finder Service tells whether any queried word is a part of the dictionary or not. Beyond that, it suggests words in the dictionary based on what has been typed. These suggestions take into account which words are frequently searched for.
+Given a dictionary of words, this project tells whether any queried word is a part of the dictionary or not. Beyond that, it suggests words in the dictionary based on what has been typed. These suggestions take into account which words are frequently searched for.
 
 For example, let our dictionary have the words (`camera`, `capture`, `carpenter`, `cart`, `cattle`). To begin with, no word has been searched for, so typing `ca` will give the suggestions `camera`, `capture`, and `carpenter` (assuming max 3 suggestions), basically suggestions in alphabetical order. But if the search is actually for `cattle`, this will update the suggestions, so when next time someone types `ca`, `cattle` will be the first suggestion.
 
