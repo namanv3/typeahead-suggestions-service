@@ -3,6 +3,8 @@
 
 #include "../Beans/trieNode.h"
 
+using namespace std;
+
 TrieNode* wordFinderTrie;
 
 #endif

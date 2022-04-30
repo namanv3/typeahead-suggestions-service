@@ -7,6 +7,8 @@
 #include "../Beans/trieNode.h"
 #include "../Commons/stringUtils.h"
 
+using namespace std;
+
 WordSearchStatus checkInTrieNode(string query, TrieNode* trieNode, string fullWord);
 
 WordSearchStatus checkForWord(string query) {
