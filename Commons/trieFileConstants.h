@@ -7,7 +7,7 @@ using namespace std;
 
 const string TRIE_FILENAME  = "latestDictionary.trie";
 
-const string WORDS_FILENAME = "Datagen/lessWords.txt";
+const string WORDS_FILENAME = "dictionary.txt";
 
 const string IS_END_OF_WORD_FLAG = "+";
 const string IS_NOT_END_OF_WORD_FLAG = "-";
