@@ -44,6 +44,5 @@ curl localhost:18080/findWord/<word>
 curl localhost:18080/suggestions/<query string>
 ```
 ## Pending Work
-1. Update suggestions whenever a word is searched
-2. Have a sidecar application that stores the state of the Word Finder Service, so that if it crashes or is closed, then the suggestions that have been built up are not reset when the Service is restarted.
-3. Build some UI for these APIs
+1. Have a sidecar application that stores the state of the Word Finder Service, so that if it crashes or is closed, then the suggestions that have been built up are not reset when the Service is restarted.
+2. Build some UI for these APIs
