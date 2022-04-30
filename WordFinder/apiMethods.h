@@ -4,6 +4,7 @@
 #include "../API/crow_all.h"
 #include "wordFinder.h"
 #include "suggestionsFinder.h"
+#include "../Commons/writeTrieToFile.h"
 
 using namespace std;
 
@@ -24,6 +25,15 @@ crow::json::wvalue findSuggestions(string query) {
 
 	crow::json::wvalue response;
 	response["suggestions"] = suggestions;
+	return response;
+}
+
+crow::json::wvalue fetchTrieContent() {
+	string trieContent = "";
+	generateFileContent(wordFinderTrie, trieContent);
+
+	crow::json::wvalue response;
+	response["trieContent"] = trieContent;
 	return response;
 }
 
