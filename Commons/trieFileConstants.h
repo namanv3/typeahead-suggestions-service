@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const string TRIE_FILENAME  = "trieFromScratch.trie";
+const string TRIE_FILENAME  = "latestDictionary.trie";
 
 const string WORDS_FILENAME = "Datagen/lessWords.txt";
 
