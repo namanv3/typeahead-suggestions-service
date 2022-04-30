@@ -17,7 +17,7 @@ Crow requires `boost` and `google-perftools` (mentioned in its README). To insta
 brew install boost google-perftools
 ```
 
-## How to begin: 
+## How to begin
 Firstly, the dictionary of words needs to be preprocessed. For that, build the datagen app using:
 ```
 g++ -std=c++11 Datagen/datagenApp.cpp 
@@ -43,6 +43,18 @@ curl localhost:18080/findWord/<word>
 ```
 curl localhost:18080/suggestions/<query string>
 ```
+## Data Capture App
+Whenever Word Finder App is shut down, all the data about searched words is lost. In order to circumvent this, Data Capture App can be used. This App takes the latest data from The Word Finder App every 10 seconds, and stores it in a file. Whenever Word Finder App is restarted, it queries that file to get the initial data. This way, almost all of the search data is retained.
+
+### Prequisites
+This is a python script. The `requests` package is required for this:
+```
+pip3 install requests`
+```
+### How to run
+A simple python command does the trick. 
+```
+python3 DataCapture/dataCaptureApp.py
+```
 ## Pending Work
-1. Have a sidecar application that stores the state of the Word Finder Service, so that if it crashes or is closed, then the suggestions that have been built up are not reset when the Service is restarted.
-2. Build some UI for these APIs
+1. Build some UI for these APIs
