@@ -6,7 +6,7 @@ void updateSuggestionTillRoot(TrieNode* node, string word) {
 		return;
 	}
 
-	node->addNewSuggestionOrIncrement(word);
+	node->updateSuggestionsForWord(word);
 	updateSuggestionTillRoot(node->getParent(), word);
 }
 
