@@ -2,6 +2,7 @@
 #define __TRIE_NODE_INCLUDED__
 
 #include <vector>
+#include <list>
 
 #include "commonConstants.h"
 #include "suggestion.h"
@@ -12,7 +13,7 @@ class TrieNode {
 		TrieNode* children[ALPHABET_SIZE];
 		bool rootNode;
 		bool endOfWord;
-		Suggestion* topSuggestions[NUM_SUGGESTIONS];
+		list<Suggestion> topSuggestions;
 		TrieNode* parent;
 	public:
 		TrieNode(char c, bool isEndOfWord, TrieNode* parentNode) {
@@ -23,9 +24,6 @@ class TrieNode {
 				children[i] = NULL;
 			}
 
-			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-				topSuggestions[i] = NULL;
-			}
 			parent = parentNode;
 		}
 
@@ -37,9 +35,6 @@ class TrieNode {
 				children[i] = NULL;
 			}
 
-			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-				topSuggestions[i] = NULL;
-			}
 			parent = NULL;
 		}
 
@@ -50,9 +45,7 @@ class TrieNode {
 			for (int i = 0; i < ALPHABET_SIZE; i++) {
 				children[i] = NULL;
 			}
-			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-				topSuggestions[i] = NULL;
-			}
+
 			parent = NULL;
 		}
 
@@ -60,7 +53,7 @@ class TrieNode {
 			return letter;
 		}
 
-		Suggestion** getTopSuggestions() {
+		list<Suggestion> getTopSuggestions() {
 			return topSuggestions;
 		}
 
@@ -106,28 +99,17 @@ class TrieNode {
 			endOfWord = true;
 		}
 
-		void insertSuggestion(Suggestion* suggestion) {
-			if (suggestion == NULL) {
-				return;
-			}
-
-			int insertAt = NUM_SUGGESTIONS;
-			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-				if (topSuggestions[i] == NULL || *suggestion > *topSuggestions[i]) {
-					insertAt = i;
+		void insertSuggestion(Suggestion suggestion) {
+			list<Suggestion>::iterator it;
+			for (it = topSuggestions.begin(); it != topSuggestions.end(); it++) {
+				if (suggestion > *it) {
 					break;
 				}
-				if (*suggestion == *topSuggestions[i]) {
+				if (suggestion == *it) {
 					return;
 				}
 			}
-
-			Suggestion* toInsert = suggestion;
-			for (int i = insertAt; i < NUM_SUGGESTIONS; i++) {
-				Suggestion* temp = toInsert;
-				toInsert = topSuggestions[i];
-				topSuggestions[i] = temp;
-			}
+			topSuggestions.insert(it, suggestion);
 		}
 
 		void updateSuggestionsFromChild(char c) {
@@ -135,20 +117,18 @@ class TrieNode {
 			if (children[i] == 0) {
 				return;
 			}
-			Suggestion** childTopSuggestions = children[i]->getTopSuggestions();
-			for (int j = 0; j < NUM_SUGGESTIONS; j++) {
-				insertSuggestion(childTopSuggestions[j]);
+			list<Suggestion> childTopSuggestions = children[i]->getTopSuggestions();
+			list<Suggestion>::iterator it;
+			for (it = childTopSuggestions.begin(); it != childTopSuggestions.end(); it++) {
+				insertSuggestion(*it);
 			}
 		}
 
 		void printSuggestions() {
 			printf("Suggestions: ");
-			for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-				if (topSuggestions[i] == NULL) {
-					printf("\n");
-					return;
-				}
-				printf("%s %d, ", topSuggestions[i]->getSuggestedWord().c_str(), topSuggestions[i]->getCount());
+			list<Suggestion>::iterator it;
+			for (it = topSuggestions.begin(); it != topSuggestions.end(); it++) {
+				printf("%s %d, ", it->getSuggestedWord().c_str(), it->getCount());
 			}
 			printf("\n");
 		}
@@ -169,10 +149,9 @@ class TrieNode {
 
 		vector<string> getSuggestedWords() {
 			vector<string> suggestions;
-			int i = 0;
-			while (i < NUM_SUGGESTIONS && topSuggestions[i] != NULL) {
-				suggestions.push_back(topSuggestions[i]->getSuggestedWord());
-				i++;
+			list<Suggestion>::iterator it;
+			for (it = topSuggestions.begin(); it != topSuggestions.end(); it++) {
+				suggestions.push_back(it->getSuggestedWord());
 			}
 			return suggestions;
 		}

@@ -39,15 +39,12 @@ string convertNodeToString(TrieNode* trieNode) {
 	nodeString += trieNode->getLetter();
 
 	// add suggestions
-	Suggestion** suggestions = trieNode->getTopSuggestions();
-	for (int i = 0; i < NUM_SUGGESTIONS; i++) {
-	    Suggestion* s = suggestions[i];
-	    if (s == NULL) {
-	    	nodeString += NO_SUGGESTION;
-	    	continue;
-	    }
-		nodeString += s->getSuggestedWord() + to_string(s->getCount());
+	list<Suggestion> topSuggestions = trieNode->getTopSuggestions();
+	list<Suggestion>::iterator it;
+	for (it = topSuggestions.begin(); it != topSuggestions.end(); it++) {
+		nodeString += it->getSuggestedWord() + to_string(it->getCount());
 	}
+	
 	// add endOfWord flag
 	nodeString += trieNode->isEndOfWord() ? IS_END_OF_WORD_FLAG : IS_NOT_END_OF_WORD_FLAG;
 
