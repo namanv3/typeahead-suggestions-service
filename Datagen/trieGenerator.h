@@ -28,7 +28,7 @@ void insertWord(TrieNode* trieNode, string wordToInsert, string fullWord) {
 
 	if (isLastChar) {
 		childNode->makeEndOfWord();
-		childNode->insertSuggestion(new Suggestion(fullWord));
+		childNode->insertSuggestion(*(new Suggestion(fullWord)));
 	} else {
 		insertWord(childNode, wordToInsert.substr(1), fullWord);
 	}

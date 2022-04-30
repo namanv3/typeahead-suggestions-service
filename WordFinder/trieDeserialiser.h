@@ -45,9 +45,6 @@ void addSuggestions(TrieNode* node, string nodeString) {
 	bool readingWord = true;
 	while (currIdx < nodeString.size()) {
 		if (readingWord) {
-			if (nodeString[currIdx] == NO_SUGGESTION[0]) {
-				return;
-			}
 			if (nodeString[currIdx] >= 'a' && nodeString[currIdx] <= 'z') {
 				currWord += nodeString[currIdx];
 			} else {
@@ -60,7 +57,7 @@ void addSuggestions(TrieNode* node, string nodeString) {
 			} else {
 				int count = stoi(currCount);
 				Suggestion* s = new Suggestion(currWord, count);
-				node->insertSuggestion(s);
+				node->insertSuggestion(*s);
 				if (nodeString[currIdx] == IS_END_OF_WORD_FLAG[0]
 					|| nodeString[currIdx] == IS_NOT_END_OF_WORD_FLAG[0]) {
 					return;
